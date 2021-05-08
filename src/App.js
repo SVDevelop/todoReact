@@ -62,8 +62,16 @@ function App() {
     <>
       <h1>todo</h1>
       <Input value={newTodo} newTodo={setNewTodo} handlerNewTodo={handlerNewTodo} />
-      <ButtonContrl remove={removeTodo} todos={todos} done={toggleTodo} />
-      <TodoItems todos={todos} selectedTodo={selectedTodo}/>
+      {
+        todos.some(todo=>todo.isSelected) ? (
+        <ButtonContrl remove={removeTodo} todos={todos} done={toggleTodo} />
+        ) : ''
+      }
+      {
+        todos.length ? (
+          <TodoItems todos={todos} selectedTodo={selectedTodo}/>
+        ) : (<p>нет задач</p>)
+      }
     </>  
     )
 }
